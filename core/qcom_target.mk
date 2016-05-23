@@ -71,6 +71,7 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
         endif
         endif
         endif
+        endif
     endif
 
 # HACK: check to see if build uses standard QC HAL paths by checking for CM path structure
