@@ -1574,7 +1574,7 @@ def main(argv):
   # in the root directory of the ramdisk.
   if "selinux_fc" in OPTIONS.info_dict:
     OPTIONS.info_dict["selinux_fc"] = os.path.join(
-        OPTIONS.input_tmp, "BOOT", "RAMDISK", "file_contexts")
+        OPTIONS.input_tmp, "BOOT", "RAMDISK", "file_contexts.bin")
 
   if OPTIONS.verbose:
     print "--- target info ---"
@@ -1627,7 +1627,7 @@ def main(argv):
       OPTIONS.source_info_dict = common.LoadInfoDict(source_zip)
       if "selinux_fc" in OPTIONS.source_info_dict:
         OPTIONS.source_info_dict["selinux_fc"] = os.path.join(
-            OPTIONS.source_tmp, "BOOT", "RAMDISK", "file_contexts")
+            OPTIONS.source_tmp, "BOOT", "RAMDISK", "file_contexts.bin")
       if OPTIONS.package_key is None:
         OPTIONS.package_key = OPTIONS.source_info_dict.get(
             "default_system_dev_certificate",
