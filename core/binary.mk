@@ -139,6 +139,7 @@ ifdef LOCAL_SDK_VERSION
   ifneq (,$(filter c++_%, $(LOCAL_NDK_STL_VARIANT)))
     my_ndk_stl_include_path := $(my_ndk_source_root)/cxx-stl/llvm-libc++/libcxx/include \
                                $(my_ndk_source_root)/cxx-stl/llvm-libc++/gabi++/include \
+                               $(my_ndk_source_root)/cxx-stl/llvm-libc++/include \
                                $(my_ndk_source_root)/android/support/include
     ifeq (c++_static,$(LOCAL_NDK_STL_VARIANT))
       my_ndk_stl_static_lib := $(my_ndk_source_root)/cxx-stl/llvm-libc++/libs/$(my_cpu_variant)/libc++_static.a
