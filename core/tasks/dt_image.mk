@@ -16,18 +16,11 @@ endif
 
 DTBTOOL := $(HOST_OUT_EXECUTABLES)/$(DTBTOOL_NAME)$(HOST_EXECUTABLE_SUFFIX)
 
-KERNEL_ARCH ?= $(TARGET_ARCH)
+KERNEL_ARCH := $(TARGET_ARCH)
 
 INSTALLED_DTIMAGE_TARGET := $(PRODUCT_OUT)/dt.img
 
-ifeq ($(strip $(TARGET_CUSTOM_DTBTOOL)),)
-# dtbToolCM will search subdirectories
-possible_dtb_dirs = $(KERNEL_OUT)/arch/$(KERNEL_ARCH)/boot/
-else
-# Most specific paths must come first in possible_dtb_dirs
-possible_dtb_dirs = $(KERNEL_OUT)/arch/$(KERNEL_ARCH)/boot/dts/ $(KERNEL_OUT)/arch/$(KERNEL_ARCH)/boot/
-endif
-dtb_dir = $(firstword $(wildcard $(possible_dtb_dirs)))
+dtb_dir = $(KERNEL_OUT)/arch/$(KERNEL_ARCH)/boot/
 
 define build-dtimage-target
     $(call pretty,"Target dt image: $@")
