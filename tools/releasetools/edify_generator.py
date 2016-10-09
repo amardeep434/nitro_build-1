@@ -132,7 +132,8 @@ class EdifyGenerator(object):
 
   def AssertDevice(self, device):
     """Assert that the device identifier is the given string."""
-    cmd = ('getprop("ro.product.device") == "%s" || '
+    cmd = (' || \0'.join(['getprop("ro.product.device") == "%s" || getprop("ro.build.product") == "%s"'
+                         % (i, i) for i in device.split(",")]) + ' || '
            'abort("E%d: This package is for \\"%s\\" devices; '
            'this is a \\"" + getprop("ro.product.device") + "\\".");') % (
                device, common.ErrorCode.DEVICE_MISMATCH, device)
