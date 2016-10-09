@@ -136,7 +136,7 @@ class EdifyGenerator(object):
                          % (i, i) for i in device.split(",")]) + ' || '
            'abort("E%d: This package is for \\"%s\\" devices; '
            'this is a \\"" + getprop("ro.product.device") + "\\".");') % (
-               device, common.ErrorCode.DEVICE_MISMATCH, device)
+               common.ErrorCode.DEVICE_MISMATCH, device)
     self.script.append(cmd)
 
   def AssertSomeBootloader(self, *bootloaders):
