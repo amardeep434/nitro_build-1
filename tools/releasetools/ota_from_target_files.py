@@ -177,6 +177,7 @@ OPTIONS.full_radio = False
 OPTIONS.full_bootloader = False
 # Stash size cannot exceed cache_size * threshold.
 OPTIONS.cache_size = None
+OPTIONS.override_device = 'auto'
 OPTIONS.backuptool = False
 OPTIONS.stash_threshold = 0.8
 OPTIONS.gen_verify = False
@@ -467,7 +468,7 @@ def AppendAssertions(script, info_dict, oem_dict=None):
     if OPTIONS.override_device == "auto":
       device = GetBuildProp("ro.product.device", info_dict)
     else:
-      device = OPTIONS.override_device  
+      device = OPTIONS.override_device
     script.AssertDevice(device)
   else:
     if oem_dict is None:
@@ -496,7 +497,6 @@ def GetOemProperty(name, oem_props, oem_dict, info_dict):
   if oem_props is not None and name in oem_props:
     return oem_dict[name]
   return GetBuildProp(name, info_dict)
-
 
 def CalculateFingerprint(oem_props, oem_dict, info_dict):
   if oem_props is None:
@@ -1992,10 +1992,6 @@ def main(argv):
       OPTIONS.updater_binary = a
     elif o in ("--no_fallback_to_full",):
       OPTIONS.fallback_to_full = False
-    elif o in ("--backup"):
-      OPTIONS.backuptool = bool(a.lower() == 'true')
-    elif o in ("--override_device"):
-      OPTIONS.override_device = a
     elif o == "--stash_threshold":
       try:
         OPTIONS.stash_threshold = float(a)
@@ -2012,6 +2008,8 @@ def main(argv):
       OPTIONS.payload_signer_args = shlex.split(a)
     elif o in ("--backup"):
       OPTIONS.backuptool = bool(a.lower() == 'true')
+    elif o in ("--override_device"):
+      OPTIONS.override_device = a
     else:
       return False
     return True
@@ -2044,7 +2042,8 @@ def main(argv):
                                  "payload_signer=",
                                  "payload_signer_args=",
                                  "backup=",
-                                 "override_device="], extra_option_handler=option_handler)
+                                 "override_device=",
+                             ], extra_option_handler=option_handler)
 
   if len(args) != 2:
     common.Usage(__doc__)
