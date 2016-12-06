@@ -683,7 +683,7 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
     script.Print("* **  *   *  **** *  * * ** *** * **  *  * ***");
     script.Print("*  *  *   *  * *  *  * *  * *   *  *  *  *   *");
     script.Print("*  * ***  *  * *  **** **** *** *  *  **** ***");
-    script.Print("- By xyyx & Mr.MEX ------------- Android 7.1 -");
+    script.Print("- By xyyx & Mr.MEX ----------- Android 7.1.1 -");
     script.Print(" Compiled: %s "%(build));
     script.Print(" For: %s   "%(model));
     script.Print("----------------------------------------------");
